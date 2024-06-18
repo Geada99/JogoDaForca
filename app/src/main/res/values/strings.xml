@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Jogo da Forca</string>
+    <string name="submit">Enviar</string>
+    <string name="play">Jogar</string>
+    <string name="skip">Pular</string>
+    <string name="score">Pontuação: %d</string>
 </resources>
