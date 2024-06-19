@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -26,6 +28,9 @@ import com.example.jogodaforca.ui.theme.JogoDaForcaTheme
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -120,10 +125,19 @@ fun GameLayout(modifier: Modifier = Modifier, gameViewModel: GameViewModel) {
     Column(
         verticalArrangement = Arrangement.spacedBy(mediumPadding),
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = modifier.padding(mediumPadding)
+        modifier = modifier
+            .padding(mediumPadding)
+            .size(450.dp)
     ) {
+        Text(
+            text = stringResource(R.string.app_name),
+            style = MaterialTheme.typography.titleLarge,
+            fontSize = 35.sp
+        )
         Image(
-            modifier = Modifier.size(150.dp),
+            modifier = Modifier
+                .size(250.dp)
+                .padding(mediumPadding*2),
             painter = imagemForca,
             contentDescription = "Forca"
         )
@@ -132,12 +146,437 @@ fun GameLayout(modifier: Modifier = Modifier, gameViewModel: GameViewModel) {
             text = hiddenWord
         )
     }
-}
+    Column(
+        modifier = Modifier,
+        //.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,  // Alinha os elementos verticalmente ao centro
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+            Row{
+                Box(
+                    modifier = Modifier
+                        .size(33.dp)
+                        .padding(3.dp)
+                        .clip(shape = RectangleShape)
+                        .clickable { /* Ação do clique */ }
+                        .background(Color.Gray),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "Q",
+                        fontSize = 16.sp,
+                        color = Color.White
+                    )
+                }
+                Box(
+                    modifier = Modifier
+                        .size(33.dp)
+                        .padding(3.dp)
+                        .clip(shape = RectangleShape)
+                        .clickable { /* Ação do clique */ }
+                        .background(Color.Gray),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "W",
+                        fontSize = 16.sp,
+                        color = Color.White
+                    )
+                }
+                Box(
+                    modifier = Modifier
+                        .size(33.dp)
+                        .padding(3.dp)
+                        .clip(shape = RectangleShape)
+                        .clickable { /* Ação do clique */ }
+                        .background(Color.Gray),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "E",
+                        fontSize = 16.sp,
+                        color = Color.White
+                    )
+                }
+                Box(
+                    modifier = Modifier
+                        .size(33.dp)
+                        .padding(3.dp)
+                        .clip(shape = RectangleShape)
+                        .clickable { /* Ação do clique */ }
+                        .background(Color.Gray),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "R",
+                        fontSize = 16.sp,
+                        color = Color.White
+                    )
+                }
+                Box(
+                    modifier = Modifier
+                        .size(33.dp)
+                        .padding(3.dp)
+                        .clip(shape = RectangleShape)
+                        .clickable { /* Ação do clique */ }
+                        .background(Color.Gray),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "T",
+                        fontSize = 16.sp,
+                        color = Color.White
+                    )
+                }
+                Box(
+                    modifier = Modifier
+                        .size(33.dp)
+                        .padding(3.dp)
+                        .clip(shape = RectangleShape)
+                        .clickable { /* Ação do clique */ }
+                        .background(Color.Gray),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "Y",
+                        fontSize = 16.sp,
+                        color = Color.White
+                    )
+                }
+                Box(
+                    modifier = Modifier
+                        .size(33.dp)
+                        .padding(3.dp)
+                        .clip(shape = RectangleShape)
+                        .clickable { /* Ação do clique */ }
+                        .background(Color.Gray),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "U",
+                        fontSize = 16.sp,
+                        color = Color.White
+                    )
+                }
+                Box(
+                    modifier = Modifier
+                        .size(33.dp)
+                        .padding(3.dp)
+                        .clip(shape = RectangleShape)
+                        .clickable { /* Ação do clique */ }
+                        .background(Color.Gray),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "I",
+                        fontSize = 16.sp,
+                        color = Color.White
+                    )
+                }
+                Box(
+                    modifier = Modifier
+                        .size(33.dp)
+                        .padding(3.dp)
+                        .clip(shape = RectangleShape)
+                        .clickable { /* Ação do clique */ }
+                        .background(Color.Gray),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "O",
+                        fontSize = 16.sp,
+                        color = Color.White
+                    )
+                }
+                Box(
+                    modifier = Modifier
+                        .size(33.dp)
+                        .padding(3.dp)
+                        .clip(shape = RectangleShape)
+                        .clickable { /* Ação do clique */ }
+                        .background(Color.Gray),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "P",
+                        fontSize = 16.sp,
+                        color = Color.White
+                    )
+                }
+            }
+
+
+            Row {
+                Box(
+                    modifier = Modifier
+                        .size(33.dp)
+                        .padding(3.dp)
+                        .clip(shape = RectangleShape)
+                        .clickable { /* Ação do clique */ }
+                        .background(Color.Gray),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "A",
+                        fontSize = 16.sp,
+                        color = Color.White
+                    )
+                }
+                Box(
+                    modifier = Modifier
+                        .size(33.dp)
+                        .padding(3.dp)
+                        .clip(shape = RectangleShape)
+                        .clickable { /* Ação do clique */ }
+                        .background(Color.Gray),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "S",
+                        fontSize = 16.sp,
+                        color = Color.White
+                    )
+                }
+                Box(
+                    modifier = Modifier
+                        .size(33.dp)
+                        .padding(3.dp)
+                        .clip(shape = RectangleShape)
+                        .clickable { /* Ação do clique */ }
+                        .background(Color.Gray),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "D",
+                        fontSize = 16.sp,
+                        color = Color.White
+                    )
+                }
+                Box(
+                    modifier = Modifier
+                        .size(33.dp)
+                        .padding(3.dp)
+                        .clip(shape = RectangleShape)
+                        .clickable { /* Ação do clique */ }
+                        .background(Color.Gray),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "F",
+                        fontSize = 16.sp,
+                        color = Color.White
+                    )
+                }
+                Box(
+                    modifier = Modifier
+                        .size(33.dp)
+                        .padding(3.dp)
+                        .clip(shape = RectangleShape)
+                        .clickable { /* Ação do clique */ }
+                        .background(Color.Gray),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "G",
+                        fontSize = 16.sp,
+                        color = Color.White
+                    )
+                }
+                Box(
+                    modifier = Modifier
+                        .size(33.dp)
+                        .padding(3.dp)
+                        .clip(shape = RectangleShape)
+                        .clickable { /* Ação do clique */ }
+                        .background(Color.Gray),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "H",
+                        fontSize = 16.sp,
+                        color = Color.White
+                    )
+                }
+                Box(
+                    modifier = Modifier
+                        .size(33.dp)
+                        .padding(3.dp)
+                        .clip(shape = RectangleShape)
+                        .clickable { /* Ação do clique */ }
+                        .background(Color.Gray),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "J",
+                        fontSize = 16.sp,
+                        color = Color.White
+                    )
+                }
+                Box(
+                    modifier = Modifier
+                        .size(33.dp)
+                        .padding(3.dp)
+                        .clip(shape = RectangleShape)
+                        .clickable { /* Ação do clique */ }
+                        .background(Color.Gray),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "K",
+                        fontSize = 16.sp,
+                        color = Color.White
+                    )
+                }
+                Box(
+                    modifier = Modifier
+                        .size(33.dp)
+                        .padding(3.dp)
+                        .clip(shape = RectangleShape)
+                        .clickable { /* Ação do clique */ }
+                        .background(Color.Gray),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "L",
+                        fontSize = 16.sp,
+                        color = Color.White
+                    )
+                }
+                Box(
+                    modifier = Modifier
+                        .size(33.dp)
+                        .padding(3.dp)
+                        .clip(shape = RectangleShape)
+                        .clickable { /* Ação do clique */ }
+                        .background(Color.Gray),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "Ç",
+                        fontSize = 16.sp,
+                        color = Color.White
+                    )
+                }
+            }
+
+
+            Row {
+                Box(
+                    modifier = Modifier
+                        .size(33.dp)
+                        .padding(3.dp)
+                        .clip(shape = RectangleShape)
+                        .clickable { /* Ação do clique */ }
+                        .background(Color.Gray),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "Z",
+                        fontSize = 16.sp,
+                        color = Color.White
+                    )
+                }
+                Box(
+                    modifier = Modifier
+                        .size(33.dp)
+                        .padding(3.dp)
+                        .clip(shape = RectangleShape)
+                        .clickable { /* Ação do clique */ }
+                        .background(Color.Gray),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "X",
+                        fontSize = 16.sp,
+                        color = Color.White
+                    )
+                }
+                Box(
+                    modifier = Modifier
+                        .size(33.dp)
+                        .padding(3.dp)
+                        .clip(shape = RectangleShape)
+                        .clickable { /* Ação do clique */ }
+                        .background(Color.Gray),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "C",
+                        fontSize = 16.sp,
+                        color = Color.White
+                    )
+                }
+                Box(
+                    modifier = Modifier
+                        .size(33.dp)
+                        .padding(3.dp)
+                        .clip(shape = RectangleShape)
+                        .clickable { /* Ação do clique */ }
+                        .background(Color.Gray),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "V",
+                        fontSize = 16.sp,
+                        color = Color.White
+                    )
+                }
+                Box(
+                    modifier = Modifier
+                        .size(33.dp)
+                        .padding(3.dp)
+                        .clip(shape = RectangleShape)
+                        .clickable { /* Ação do clique */ }
+                        .background(Color.Gray),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "B",
+                        fontSize = 16.sp,
+                        color = Color.White
+                    )
+                }
+                Box(
+                    modifier = Modifier
+                        .size(33.dp)
+                        .padding(3.dp)
+                        .clip(shape = RectangleShape)
+                        .clickable { /* Ação do clique */ }
+                        .background(Color.Gray),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "N",
+                        fontSize = 16.sp,
+                        color = Color.White
+                    )
+                }
+                Box(
+                    modifier = Modifier
+                        .size(33.dp)
+                        .padding(3.dp)
+                        .clip(shape = RectangleShape)
+                        .clickable { /* Ação do clique */ }
+                        .background(Color.Gray),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "M",
+                        fontSize = 16.sp,
+                        color = Color.White
+                    )
+                }
+
+            }
+        }
+    }
+
+
 
 @Preview(showBackground = true)
 @Composable
 fun GameScreenPreview() {
     JogoDaForcaTheme {
-        GameLayoutScreen(GameViewModel(allWords)) // Simulação para a prévia, substitua por um viewModelProvider na versão final
+        GameLayoutScreen(GameViewModel(allWords))
     }
 }
