@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="image_array">
+        <item>@drawable/hangman_picture_1</item>
+        <item>@drawable/hangman_picture_2</item>
+        <item>@drawable/hangman_picture_3</item>
+        <item>@drawable/hangman_picture_4</item>
+        <item>@drawable/hangman_picture_5</item>
+        <item>@drawable/hangman_picture_6</item>
+        <item>@drawable/hangman_picture_7</item>
+        <item>@drawable/hangman_picture_8</item>
+    </string-array>
+</resources>
