@@ -1,5 +1,6 @@
 package com.example.jogodaforca
 
+import GameViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
