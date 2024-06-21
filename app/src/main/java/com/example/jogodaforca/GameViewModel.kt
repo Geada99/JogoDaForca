@@ -8,82 +8,17 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import com.example.jogodaforca.allWords
 
-
-class GameViewModel(
-    private val allWords: Set<String>
-) : ViewModel() {
+class GameViewModel : ViewModel() {
 
     private lateinit var currentWord: String
     private val usedWords = mutableListOf<String>()
 
     private val _hiddenWord = MutableStateFlow("")
-    val hiddenWord: StateFlow<String> get() = _hiddenWord.asStateFlow()
+    val hiddenWord: StateFlow<String> get() = _hiddenWord
 
-    init {
-        resetGame()
-    }
-
-    private fun resetGame() {
-        usedWords.clear()
-        _hiddenWord.value = pickRandomWordAndHide()
-        resetKeyboard()
-    }
-
-    fun newWord() {
-        _hiddenWord.value = pickRandomWordAndHide()
-        resetKeyboard()
-    }
-
-    private fun pickRandomWordAndHide(): String {
-        do {
-            currentWord = allWords.random()
-        } while (usedWords.contains(currentWord))
-
-        usedWords.add(currentWord)
-        return hideCurrentWord(currentWord)
-    }
-
-    private fun hideCurrentWord(word: String): String {
-        return "_ ".repeat(word.length).trim()
-    }
-
-    fun checkLetter(letter: String, onLetterClick: (Color) -> Unit) {
-        val hiddenWordValue = currentWord
-        val hiddenWordBuilder = StringBuilder(_hiddenWord.value)
-        var found = false
-        var errors = 0
-        var correctGuesses = 0
-
-        hiddenWordValue.forEachIndexed { index, char ->
-            if (char.equals(letter[0], ignoreCase = true)) {
-                hiddenWordBuilder.setCharAt(2 * index, char) // Para compensar o facto de haver espaço entre as letras
-                found = true
-            }
-        }
-
-        _hiddenWord.value = hiddenWordBuilder.toString()
-
-        if (found) {
-            onLetterClick(Color.Green)
-            if (correctGuesses == currentWord.length) {
-                // endGame(true)
-            } else {
-                correctGuesses++
-            }
-        } else {
-            onLetterClick(Color.Red)
-            if (errors == 8) {
-                // endGame(false)
-            } else {
-                errors++
-            }
-        }
-    }
-
+    // Variables for keyboard reset
     var boxQClicked by mutableStateOf(false)
     var boxQBackgroundColor by mutableStateOf(Color.Gray)
 
@@ -141,8 +76,8 @@ class GameViewModel(
     var boxLClicked by mutableStateOf(false)
     var boxLBackgroundColor by mutableStateOf(Color.Gray)
 
-    var boxÇClicked by mutableStateOf(false)
-    var boxÇBackgroundColor by mutableStateOf(Color.Gray)
+    var boxCedilhaClicked by mutableStateOf(false)
+    var boxCedilhaBackgroundColor by mutableStateOf(Color.Gray)
 
     var boxZClicked by mutableStateOf(false)
     var boxZBackgroundColor by mutableStateOf(Color.Gray)
@@ -165,69 +100,137 @@ class GameViewModel(
     var boxMClicked by mutableStateOf(false)
     var boxMBackgroundColor by mutableStateOf(Color.Gray)
 
-    fun resetKeyboard() {
+    init {
+        resetGame()
+    }
+
+    private fun resetGame() {
+        usedWords.clear()
+        _hiddenWord.value = pickRandomWordAndHide()
+        resetKeyboard()
+    }
+
+    fun newWord() {
+        _hiddenWord.value = pickRandomWordAndHide()
+        resetKeyboard()
+    }
+
+    private fun pickRandomWordAndHide(): String {
+        do {
+            currentWord = allWords.random()
+        } while (usedWords.contains(currentWord))
+
+        usedWords.add(currentWord)
+        return hideCurrentWord(currentWord)
+    }
+
+    private fun hideCurrentWord(word: String): String {
+        return "_ ".repeat(word.length).trim()
+    }
+
+    fun checkLetter(letter: String, onLetterClick: (Color) -> Unit) {
+        val hiddenWordValue = currentWord
+        val hiddenWordBuilder = StringBuilder(_hiddenWord.value)
+        var found = false
+
+        hiddenWordValue.forEachIndexed { index, char ->
+            if (char.equals(letter[0], ignoreCase = true)) {
+                hiddenWordBuilder.setCharAt(2 * index, char) // To compensate for the space between letters
+                found = true
+            }
+        }
+
+        _hiddenWord.value = hiddenWordBuilder.toString()
+
+        if (found) {
+            onLetterClick(Color.Green)
+        } else {
+            onLetterClick(Color.Red)
+        }
+    }
+
+    private fun resetKeyboard() {
         viewModelScope.launch {
             boxQClicked = false
             boxQBackgroundColor = Color.Gray
+
             boxWClicked = false
             boxWBackgroundColor = Color.Gray
+
             boxEClicked = false
             boxEBackgroundColor = Color.Gray
+
             boxRClicked = false
             boxRBackgroundColor = Color.Gray
+
             boxTClicked = false
             boxTBackgroundColor = Color.Gray
+
             boxYClicked = false
             boxYBackgroundColor = Color.Gray
+
             boxUClicked = false
             boxUBackgroundColor = Color.Gray
+
             boxIClicked = false
             boxIBackgroundColor = Color.Gray
+
             boxOClicked = false
             boxOBackgroundColor = Color.Gray
+
             boxPClicked = false
             boxPBackgroundColor = Color.Gray
+
             boxAClicked = false
             boxABackgroundColor = Color.Gray
+
             boxSClicked = false
             boxSBackgroundColor = Color.Gray
+
             boxDClicked = false
             boxDBackgroundColor = Color.Gray
+
             boxFClicked = false
             boxFBackgroundColor = Color.Gray
+
             boxGClicked = false
             boxGBackgroundColor = Color.Gray
+
             boxHClicked = false
             boxHBackgroundColor = Color.Gray
+
             boxJClicked = false
             boxJBackgroundColor = Color.Gray
+
             boxKClicked = false
             boxKBackgroundColor = Color.Gray
+
             boxLClicked = false
             boxLBackgroundColor = Color.Gray
-            boxÇClicked = false
-            boxÇBackgroundColor = Color.Gray
+
+            boxCedilhaClicked = false
+            boxCedilhaBackgroundColor = Color.Gray
+
             boxZClicked = false
             boxZBackgroundColor = Color.Gray
+
             boxXClicked = false
             boxXBackgroundColor = Color.Gray
+
             boxCClicked = false
             boxCBackgroundColor = Color.Gray
+
             boxVClicked = false
             boxVBackgroundColor = Color.Gray
+
             boxBClicked = false
             boxBBackgroundColor = Color.Gray
+
             boxNClicked = false
             boxNBackgroundColor = Color.Gray
+
             boxMClicked = false
             boxMBackgroundColor = Color.Gray
         }
     }
 }
-
-    /*
-    fun endGame(Win: ){
-
-    }
-     */
-
