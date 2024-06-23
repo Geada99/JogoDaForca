@@ -18,6 +18,23 @@ class GameViewModel : ViewModel() {
     private val _hiddenWord = MutableStateFlow("")
     val hiddenWord: StateFlow<String> get() = _hiddenWord
 
+    private val _currentImageIndex = MutableStateFlow(0)
+    val currentImageIndex: StateFlow<Int> get() = _currentImageIndex
+
+    private val _erros = MutableStateFlow(0)
+    val erros: StateFlow<Int> get() = _erros
+
+    private val imageResources = listOf(
+        R.drawable.hangman_picture_1,
+        R.drawable.hangman_picture_2,
+        R.drawable.hangman_picture_3,
+        R.drawable.hangman_picture_4,
+        R.drawable.hangman_picture_5,
+        R.drawable.hangman_picture_6,
+        R.drawable.hangman_picture_7,
+        R.drawable.hangman_picture_8
+    )
+
     // Variables for keyboard reset
     var boxQClicked by mutableStateOf(false)
     var boxQBackgroundColor by mutableStateOf(Color.Gray)
@@ -107,13 +124,31 @@ class GameViewModel : ViewModel() {
     private fun resetGame() {
         usedWords.clear()
         _hiddenWord.value = pickRandomWordAndHide()
+        _erros.value = 0
+        _currentImageIndex.value = 0
         resetKeyboard()
     }
 
     fun newWord() {
         _hiddenWord.value = pickRandomWordAndHide()
+        _erros.value = 0
+        _currentImageIndex.value = 0
         resetKeyboard()
     }
+
+    fun incrementarErros() {
+        _erros.value++
+        atualizarImagemForca()
+    }
+
+    fun getCurrentImageResource(): Int {
+        return imageResources[_currentImageIndex.value]
+    }
+
+    private fun atualizarImagemForca() {
+        _currentImageIndex.value = _erros.value.coerceAtMost(imageResources.size - 1)
+    }
+
 
     private fun pickRandomWordAndHide(): String {
         do {
@@ -145,6 +180,7 @@ class GameViewModel : ViewModel() {
         if (found) {
             onLetterClick(Color.Green)
         } else {
+            incrementarErros()
             onLetterClick(Color.Red)
         }
     }
