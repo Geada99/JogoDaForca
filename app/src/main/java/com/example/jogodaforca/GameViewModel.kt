@@ -12,19 +12,17 @@ import kotlinx.coroutines.launch
 
 class GameViewModel : ViewModel() {
 
-    private lateinit var currentWord: String
-    private val usedWords = mutableListOf<String>()
+    private lateinit var _currentWord: String
+    private val _usedWords = mutableListOf<String>()
 
     private val _hiddenWord = MutableStateFlow("")
     val hiddenWord: StateFlow<String> get() = _hiddenWord
 
     private val _currentImageIndex = MutableStateFlow(0)
-    val currentImageIndex: StateFlow<Int> get() = _currentImageIndex
 
-    private val _erros = MutableStateFlow(0)
-    val erros: StateFlow<Int> get() = _erros
+    private val _errors = MutableStateFlow(0)
 
-    private val imageResources = listOf(
+    private val _hangmanDrawing = listOf(
         R.drawable.hangman_picture_1,
         R.drawable.hangman_picture_2,
         R.drawable.hangman_picture_3,
@@ -36,127 +34,127 @@ class GameViewModel : ViewModel() {
     )
 
     // Variables for keyboard reset
-    var boxQClicked by mutableStateOf(false)
-    var boxQBackgroundColor by mutableStateOf(Color.Gray)
+    var boxQClicked: Boolean by mutableStateOf(false)
+    var boxQBackgroundColor: Color by mutableStateOf(Color.Gray)
 
-    var boxWClicked by mutableStateOf(false)
-    var boxWBackgroundColor by mutableStateOf(Color.Gray)
+    var boxWClicked: Boolean by mutableStateOf(false)
+    var boxWBackgroundColor: Color by mutableStateOf(Color.Gray)
 
-    var boxEClicked by mutableStateOf(false)
-    var boxEBackgroundColor by mutableStateOf(Color.Gray)
+    var boxEClicked: Boolean by mutableStateOf(false)
+    var boxEBackgroundColor: Color by mutableStateOf(Color.Gray)
 
-    var boxRClicked by mutableStateOf(false)
-    var boxRBackgroundColor by mutableStateOf(Color.Gray)
+    var boxRClicked: Boolean by mutableStateOf(false)
+    var boxRBackgroundColor: Color by mutableStateOf(Color.Gray)
 
-    var boxTClicked by mutableStateOf(false)
-    var boxTBackgroundColor by mutableStateOf(Color.Gray)
+    var boxTClicked: Boolean by mutableStateOf(false)
+    var boxTBackgroundColor: Color by mutableStateOf(Color.Gray)
 
-    var boxYClicked by mutableStateOf(false)
-    var boxYBackgroundColor by mutableStateOf(Color.Gray)
+    var boxYClicked: Boolean by mutableStateOf(false)
+    var boxYBackgroundColor: Color by mutableStateOf(Color.Gray)
 
-    var boxUClicked by mutableStateOf(false)
-    var boxUBackgroundColor by mutableStateOf(Color.Gray)
+    var boxUClicked: Boolean by mutableStateOf(false)
+    var boxUBackgroundColor: Color by mutableStateOf(Color.Gray)
 
-    var boxIClicked by mutableStateOf(false)
-    var boxIBackgroundColor by mutableStateOf(Color.Gray)
+    var boxIClicked: Boolean by mutableStateOf(false)
+    var boxIBackgroundColor: Color by mutableStateOf(Color.Gray)
 
-    var boxOClicked by mutableStateOf(false)
-    var boxOBackgroundColor by mutableStateOf(Color.Gray)
+    var boxOClicked: Boolean by mutableStateOf(false)
+    var boxOBackgroundColor: Color by mutableStateOf(Color.Gray)
 
-    var boxPClicked by mutableStateOf(false)
-    var boxPBackgroundColor by mutableStateOf(Color.Gray)
+    var boxPClicked: Boolean by mutableStateOf(false)
+    var boxPBackgroundColor: Color by mutableStateOf(Color.Gray)
 
-    var boxAClicked by mutableStateOf(false)
-    var boxABackgroundColor by mutableStateOf(Color.Gray)
+    var boxAClicked: Boolean by mutableStateOf(false)
+    var boxABackgroundColor: Color by mutableStateOf(Color.Gray)
 
-    var boxSClicked by mutableStateOf(false)
-    var boxSBackgroundColor by mutableStateOf(Color.Gray)
+    var boxSClicked: Boolean by mutableStateOf(false)
+    var boxSBackgroundColor: Color by mutableStateOf(Color.Gray)
 
-    var boxDClicked by mutableStateOf(false)
-    var boxDBackgroundColor by mutableStateOf(Color.Gray)
+    var boxDClicked: Boolean by mutableStateOf(false)
+    var boxDBackgroundColor: Color by mutableStateOf(Color.Gray)
 
-    var boxFClicked by mutableStateOf(false)
-    var boxFBackgroundColor by mutableStateOf(Color.Gray)
+    var boxFClicked: Boolean by mutableStateOf(false)
+    var boxFBackgroundColor: Color by mutableStateOf(Color.Gray)
 
-    var boxGClicked by mutableStateOf(false)
-    var boxGBackgroundColor by mutableStateOf(Color.Gray)
+    var boxGClicked: Boolean by mutableStateOf(false)
+    var boxGBackgroundColor: Color by mutableStateOf(Color.Gray)
 
-    var boxHClicked by mutableStateOf(false)
-    var boxHBackgroundColor by mutableStateOf(Color.Gray)
+    var boxHClicked: Boolean by mutableStateOf(false)
+    var boxHBackgroundColor: Color by mutableStateOf(Color.Gray)
 
-    var boxJClicked by mutableStateOf(false)
-    var boxJBackgroundColor by mutableStateOf(Color.Gray)
+    var boxJClicked: Boolean by mutableStateOf(false)
+    var boxJBackgroundColor: Color by mutableStateOf(Color.Gray)
 
-    var boxKClicked by mutableStateOf(false)
-    var boxKBackgroundColor by mutableStateOf(Color.Gray)
+    var boxKClicked: Boolean by mutableStateOf(false)
+    var boxKBackgroundColor: Color by mutableStateOf(Color.Gray)
 
-    var boxLClicked by mutableStateOf(false)
-    var boxLBackgroundColor by mutableStateOf(Color.Gray)
+    var boxLClicked: Boolean by mutableStateOf(false)
+    var boxLBackgroundColor: Color by mutableStateOf(Color.Gray)
 
-    var boxCedilhaClicked by mutableStateOf(false)
-    var boxCedilhaBackgroundColor by mutableStateOf(Color.Gray)
+    var boxCedilhaClicked: Boolean by mutableStateOf(false)
+    var boxCedilhaBackgroundColor: Color by mutableStateOf(Color.Gray)
 
-    var boxZClicked by mutableStateOf(false)
-    var boxZBackgroundColor by mutableStateOf(Color.Gray)
+    var boxZClicked: Boolean by mutableStateOf(false)
+    var boxZBackgroundColor: Color by mutableStateOf(Color.Gray)
 
-    var boxXClicked by mutableStateOf(false)
-    var boxXBackgroundColor by mutableStateOf(Color.Gray)
+    var boxXClicked: Boolean by mutableStateOf(false)
+    var boxXBackgroundColor: Color by mutableStateOf(Color.Gray)
 
-    var boxCClicked by mutableStateOf(false)
-    var boxCBackgroundColor by mutableStateOf(Color.Gray)
+    var boxCClicked: Boolean by mutableStateOf(false)
+    var boxCBackgroundColor: Color by mutableStateOf(Color.Gray)
 
-    var boxVClicked by mutableStateOf(false)
-    var boxVBackgroundColor by mutableStateOf(Color.Gray)
+    var boxVClicked: Boolean by mutableStateOf(false)
+    var boxVBackgroundColor: Color by mutableStateOf(Color.Gray)
 
-    var boxBClicked by mutableStateOf(false)
-    var boxBBackgroundColor by mutableStateOf(Color.Gray)
+    var boxBClicked: Boolean by mutableStateOf(false)
+    var boxBBackgroundColor: Color by mutableStateOf(Color.Gray)
 
-    var boxNClicked by mutableStateOf(false)
-    var boxNBackgroundColor by mutableStateOf(Color.Gray)
+    var boxNClicked: Boolean by mutableStateOf(false)
+    var boxNBackgroundColor: Color by mutableStateOf(Color.Gray)
 
-    var boxMClicked by mutableStateOf(false)
-    var boxMBackgroundColor by mutableStateOf(Color.Gray)
+    var boxMClicked: Boolean by mutableStateOf(false)
+    var boxMBackgroundColor: Color by mutableStateOf(Color.Gray)
 
     init {
         resetGame()
     }
 
     private fun resetGame() {
-        usedWords.clear()
+        _usedWords.clear()
         _hiddenWord.value = pickRandomWordAndHide()
-        _erros.value = 0
+        _errors.value = 0
         _currentImageIndex.value = 0
         resetKeyboard()
     }
 
     fun newWord() {
         _hiddenWord.value = pickRandomWordAndHide()
-        _erros.value = 0
+        _errors.value = 0
         _currentImageIndex.value = 0
         resetKeyboard()
     }
 
-    fun incrementarErros() {
-        _erros.value++
-        atualizarImagemForca()
+    private fun incrementErrors() {
+        _errors.value++
+        swapImage()
     }
 
     fun getCurrentImageResource(): Int {
-        return imageResources[_currentImageIndex.value]
+        return _hangmanDrawing[_currentImageIndex.value]
     }
 
-    private fun atualizarImagemForca() {
-        _currentImageIndex.value = _erros.value.coerceAtMost(imageResources.size - 1)
+    private fun swapImage() {
+        _currentImageIndex.value = _errors.value.coerceAtMost(_hangmanDrawing.size - 1)
     }
 
-
+    // "this." diferencia variáveis de instância de locais ou parâmetros dentro de métodos
     private fun pickRandomWordAndHide(): String {
         do {
-            currentWord = allWords.random()
-        } while (usedWords.contains(currentWord))
+            this._currentWord = allWords.random()
+        } while (_usedWords.contains(this._currentWord))
 
-        usedWords.add(currentWord)
-        return hideCurrentWord(currentWord)
+        _usedWords.add(_currentWord)
+        return hideCurrentWord(this._currentWord)
     }
 
     private fun hideCurrentWord(word: String): String {
@@ -164,13 +162,13 @@ class GameViewModel : ViewModel() {
     }
 
     fun checkLetter(letter: String, onLetterClick: (Color) -> Unit) {
-        val hiddenWordValue = currentWord
+        val hiddenWordValue = this._currentWord
         val hiddenWordBuilder = StringBuilder(_hiddenWord.value)
         var found = false
 
         hiddenWordValue.forEachIndexed { index, char ->
             if (char.equals(letter[0], ignoreCase = true)) {
-                hiddenWordBuilder.setCharAt(2 * index, char) // To compensate for the space between letters
+                hiddenWordBuilder.setCharAt(2 * index, char) // Para compensar o espaço entre as letras
                 found = true
             }
         }
@@ -180,7 +178,7 @@ class GameViewModel : ViewModel() {
         if (found) {
             onLetterClick(Color.Green)
         } else {
-            incrementarErros()
+            incrementErrors()
             onLetterClick(Color.Red)
         }
     }

@@ -3,7 +3,6 @@ package com.example.jogodaforca
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -19,7 +18,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -30,12 +28,10 @@ import androidx.compose.runtime.Composable
 
 class MainActivity : ComponentActivity() {
 
-    private val gameViewModel: GameViewModel by viewModels()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            GameScreen(gameViewModel)
+            GameScreen()
         }
     }
 }
@@ -43,11 +39,12 @@ class MainActivity : ComponentActivity() {
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
-    GameScreen(GameViewModel())
+    GameScreen()
 }
 
+// Página Inicial
 @Composable
-fun HangmanApp(gameViewModel: GameViewModel) {
+fun HangmanApp() {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -62,19 +59,20 @@ fun HangmanApp(gameViewModel: GameViewModel) {
             modifier = Modifier.padding(bottom = 16.dp)
         )
 
-        GameScreen(gameViewModel = gameViewModel)
+        GameScreen()
     }
 }
 
+// Ecrã de jogo
 @Composable
-fun GameScreen(gameViewModel: GameViewModel) {
+fun GameScreen() {
     val gameViewModel: GameViewModel = viewModel()
 
     val mediumPadding = dimensionResource(R.dimen.padding_medium)
 
-    val imagemForca = remember { mutableStateOf(gameViewModel.getCurrentImageResource()) }
+    val imagemForca = remember { mutableIntStateOf(gameViewModel.getCurrentImageResource()) }
 
-    // Usar o gameViewModel recebido como parâmetro para acessar o estado
+    // gameViewModel recebido é usado como parâmetro para acessar o estado
     val hiddenWord by gameViewModel.hiddenWord.collectAsState()
 
     Column(
@@ -143,7 +141,7 @@ fun GameScreen(gameViewModel: GameViewModel) {
                             gameViewModel.checkLetter("W") { newColor ->
                                 gameViewModel.boxWBackgroundColor = newColor
                                 gameViewModel.boxWClicked = true
-                                imagemForca.value = gameViewModel.getCurrentImageResource()
+                                imagemForca.intValue = gameViewModel.getCurrentImageResource()
                             }
                         }
                     }
@@ -167,7 +165,7 @@ fun GameScreen(gameViewModel: GameViewModel) {
                             gameViewModel.checkLetter("E") { newColor ->
                                 gameViewModel.boxEBackgroundColor = newColor
                                 gameViewModel.boxEClicked = true
-                                imagemForca.value = gameViewModel.getCurrentImageResource()
+                                imagemForca.intValue = gameViewModel.getCurrentImageResource()
                             }
                         }
                     }
@@ -191,7 +189,7 @@ fun GameScreen(gameViewModel: GameViewModel) {
                             gameViewModel.checkLetter("R") { newColor ->
                                 gameViewModel.boxRBackgroundColor = newColor
                                 gameViewModel.boxRClicked = true
-                                imagemForca.value = gameViewModel.getCurrentImageResource()
+                                imagemForca.intValue = gameViewModel.getCurrentImageResource()
                             }
                         }
                     }
@@ -215,7 +213,7 @@ fun GameScreen(gameViewModel: GameViewModel) {
                             gameViewModel.checkLetter("T") { newColor ->
                                 gameViewModel.boxTBackgroundColor = newColor
                                 gameViewModel.boxTClicked = true
-                                imagemForca.value = gameViewModel.getCurrentImageResource()
+                                imagemForca.intValue = gameViewModel.getCurrentImageResource()
                             }
                         }
                     }
@@ -239,7 +237,7 @@ fun GameScreen(gameViewModel: GameViewModel) {
                             gameViewModel.checkLetter("Y") { newColor ->
                                 gameViewModel.boxYBackgroundColor = newColor
                                 gameViewModel.boxYClicked = true
-                                imagemForca.value = gameViewModel.getCurrentImageResource()
+                                imagemForca.intValue = gameViewModel.getCurrentImageResource()
                             }
                         }
                     }
@@ -263,7 +261,7 @@ fun GameScreen(gameViewModel: GameViewModel) {
                             gameViewModel.checkLetter("U") { newColor ->
                                 gameViewModel.boxUBackgroundColor = newColor
                                 gameViewModel.boxUClicked = true
-                                imagemForca.value = gameViewModel.getCurrentImageResource()
+                                imagemForca.intValue = gameViewModel.getCurrentImageResource()
                             }
                         }
                     }
@@ -287,7 +285,7 @@ fun GameScreen(gameViewModel: GameViewModel) {
                             gameViewModel.checkLetter("I") { newColor ->
                                 gameViewModel.boxIBackgroundColor = newColor
                                 gameViewModel.boxIClicked = true
-                                imagemForca.value = gameViewModel.getCurrentImageResource()
+                                imagemForca.intValue = gameViewModel.getCurrentImageResource()
                             }
                         }
                     }
@@ -311,7 +309,7 @@ fun GameScreen(gameViewModel: GameViewModel) {
                             gameViewModel.checkLetter("O") { newColor ->
                                 gameViewModel.boxOBackgroundColor = newColor
                                 gameViewModel.boxOClicked = true
-                                imagemForca.value = gameViewModel.getCurrentImageResource()
+                                imagemForca.intValue = gameViewModel.getCurrentImageResource()
                             }
                         }
                     }
@@ -335,7 +333,7 @@ fun GameScreen(gameViewModel: GameViewModel) {
                             gameViewModel.checkLetter("P") { newColor ->
                                 gameViewModel.boxPBackgroundColor = newColor
                                 gameViewModel.boxPClicked = true
-                                imagemForca.value = gameViewModel.getCurrentImageResource()
+                                imagemForca.intValue = gameViewModel.getCurrentImageResource()
                             }
                         }
                     }
@@ -362,7 +360,7 @@ fun GameScreen(gameViewModel: GameViewModel) {
                             gameViewModel.checkLetter("A") { newColor ->
                                 gameViewModel.boxABackgroundColor = newColor
                                 gameViewModel.boxAClicked = true
-                                imagemForca.value = gameViewModel.getCurrentImageResource()
+                                imagemForca.intValue = gameViewModel.getCurrentImageResource()
                             }
                         }
                     }
@@ -386,7 +384,7 @@ fun GameScreen(gameViewModel: GameViewModel) {
                             gameViewModel.checkLetter("S") { newColor ->
                                 gameViewModel.boxSBackgroundColor = newColor
                                 gameViewModel.boxSClicked = true
-                                imagemForca.value = gameViewModel.getCurrentImageResource()
+                                imagemForca.intValue = gameViewModel.getCurrentImageResource()
                             }
                         }
                     }
@@ -410,7 +408,7 @@ fun GameScreen(gameViewModel: GameViewModel) {
                             gameViewModel.checkLetter("D") { newColor ->
                                 gameViewModel.boxDBackgroundColor = newColor
                                 gameViewModel.boxDClicked = true
-                                imagemForca.value = gameViewModel.getCurrentImageResource()
+                                imagemForca.intValue = gameViewModel.getCurrentImageResource()
                             }
                         }
                     }
@@ -434,7 +432,7 @@ fun GameScreen(gameViewModel: GameViewModel) {
                             gameViewModel.checkLetter("F") { newColor ->
                                 gameViewModel.boxFBackgroundColor = newColor
                                 gameViewModel.boxFClicked = true
-                                imagemForca.value = gameViewModel.getCurrentImageResource()
+                                imagemForca.intValue = gameViewModel.getCurrentImageResource()
                             }
                         }
                     }
@@ -458,7 +456,7 @@ fun GameScreen(gameViewModel: GameViewModel) {
                             gameViewModel.checkLetter("G") { newColor ->
                                 gameViewModel.boxGBackgroundColor = newColor
                                 gameViewModel.boxGClicked = true
-                                imagemForca.value = gameViewModel.getCurrentImageResource()
+                                imagemForca.intValue = gameViewModel.getCurrentImageResource()
                             }
                         }
                     }
@@ -482,7 +480,7 @@ fun GameScreen(gameViewModel: GameViewModel) {
                             gameViewModel.checkLetter("H") { newColor ->
                                 gameViewModel.boxHBackgroundColor = newColor
                                 gameViewModel.boxHClicked = true
-                                imagemForca.value = gameViewModel.getCurrentImageResource()
+                                imagemForca.intValue = gameViewModel.getCurrentImageResource()
                             }
                         }
                     }
@@ -506,7 +504,7 @@ fun GameScreen(gameViewModel: GameViewModel) {
                             gameViewModel.checkLetter("J") { newColor ->
                                 gameViewModel.boxJBackgroundColor = newColor
                                 gameViewModel.boxJClicked = true
-                                imagemForca.value = gameViewModel.getCurrentImageResource()
+                                imagemForca.intValue = gameViewModel.getCurrentImageResource()
                             }
                         }
                     }
@@ -530,7 +528,7 @@ fun GameScreen(gameViewModel: GameViewModel) {
                             gameViewModel.checkLetter("K") { newColor ->
                                 gameViewModel.boxKBackgroundColor = newColor
                                 gameViewModel.boxKClicked = true
-                                imagemForca.value = gameViewModel.getCurrentImageResource()
+                                imagemForca.intValue = gameViewModel.getCurrentImageResource()
                             }
                         }
                     }
@@ -554,7 +552,7 @@ fun GameScreen(gameViewModel: GameViewModel) {
                             gameViewModel.checkLetter("L") { newColor ->
                                 gameViewModel.boxLBackgroundColor = newColor
                                 gameViewModel.boxLClicked = true
-                                imagemForca.value = gameViewModel.getCurrentImageResource()
+                                imagemForca.intValue = gameViewModel.getCurrentImageResource()
                             }
                         }
                     }
@@ -578,7 +576,7 @@ fun GameScreen(gameViewModel: GameViewModel) {
                             gameViewModel.checkLetter("Ç") { newColor ->
                                 gameViewModel.boxCedilhaBackgroundColor = newColor
                                 gameViewModel.boxCedilhaClicked = true
-                                imagemForca.value = gameViewModel.getCurrentImageResource()
+                                imagemForca.intValue = gameViewModel.getCurrentImageResource()
                             }
                         }
                     }
@@ -605,7 +603,7 @@ fun GameScreen(gameViewModel: GameViewModel) {
                             gameViewModel.checkLetter("Z") { newColor ->
                                 gameViewModel.boxZBackgroundColor = newColor
                                 gameViewModel.boxZClicked = true
-                                imagemForca.value = gameViewModel.getCurrentImageResource()
+                                imagemForca.intValue = gameViewModel.getCurrentImageResource()
                             }
                         }
                     }
@@ -629,7 +627,7 @@ fun GameScreen(gameViewModel: GameViewModel) {
                             gameViewModel.checkLetter("X") { newColor ->
                                 gameViewModel.boxXBackgroundColor = newColor
                                 gameViewModel.boxXClicked = true
-                                imagemForca.value = gameViewModel.getCurrentImageResource()
+                                imagemForca.intValue = gameViewModel.getCurrentImageResource()
                             }
                         }
                     }
@@ -653,7 +651,7 @@ fun GameScreen(gameViewModel: GameViewModel) {
                             gameViewModel.checkLetter("C") { newColor ->
                                 gameViewModel.boxCBackgroundColor = newColor
                                 gameViewModel.boxCClicked = true
-                                imagemForca.value = gameViewModel.getCurrentImageResource()
+                                imagemForca.intValue = gameViewModel.getCurrentImageResource()
                             }
                         }
                     }
@@ -677,7 +675,7 @@ fun GameScreen(gameViewModel: GameViewModel) {
                             gameViewModel.checkLetter("V") { newColor ->
                                 gameViewModel.boxVBackgroundColor = newColor
                                 gameViewModel.boxVClicked = true
-                                imagemForca.value = gameViewModel.getCurrentImageResource()
+                                imagemForca.intValue = gameViewModel.getCurrentImageResource()
                             }
                         }
                     }
@@ -701,7 +699,7 @@ fun GameScreen(gameViewModel: GameViewModel) {
                             gameViewModel.checkLetter("B") { newColor ->
                                 gameViewModel.boxBBackgroundColor = newColor
                                 gameViewModel.boxBClicked = true
-                                imagemForca.value = gameViewModel.getCurrentImageResource()
+                                imagemForca.intValue = gameViewModel.getCurrentImageResource()
                             }
                         }
                     }
@@ -725,7 +723,7 @@ fun GameScreen(gameViewModel: GameViewModel) {
                             gameViewModel.checkLetter("N") { newColor ->
                                 gameViewModel.boxNBackgroundColor = newColor
                                 gameViewModel.boxNClicked = true
-                                imagemForca.value = gameViewModel.getCurrentImageResource()
+                                imagemForca.intValue = gameViewModel.getCurrentImageResource()
                             }
                         }
                     }
@@ -749,7 +747,7 @@ fun GameScreen(gameViewModel: GameViewModel) {
                             gameViewModel.checkLetter("M") { newColor ->
                                 gameViewModel.boxMBackgroundColor = newColor
                                 gameViewModel.boxMClicked = true
-                                imagemForca.value = gameViewModel.getCurrentImageResource()
+                                imagemForca.intValue = gameViewModel.getCurrentImageResource()
                             }
                         }
                     }
