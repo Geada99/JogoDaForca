@@ -4,4 +4,6 @@
     <string name="play">Play</string>
     <string name="skip">Skip</string>
     <string name="score">Score: %d</string>
+    <string name="hangman_game">Hangman Game</string>
+    <string name="start_game">Start Game</string>
 </resources>

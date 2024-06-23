@@ -24,14 +24,34 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.example.jogodaforca.ui.theme.JogoDaForcaTheme
 
 
 class MainActivity : ComponentActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            GameScreen()
+            JogoDaForcaTheme {
+                // Define o NavController para navegação entre telas
+                val navController = rememberNavController()
+
+                // Configura o NavHost com as rotas de navegação
+                NavHost(navController = navController, startDestination = "hangmanApp") {
+                    // Rota para a tela inicial (HangmanApp)
+                    composable("hangmanApp") {
+                        HangmanApp(navController)
+                    }
+                    // Rota para a tela de jogo (GameScreen)
+                    composable("gameScreen") {
+                        GameScreen()
+                    }
+                }
+            }
         }
     }
 }
@@ -44,7 +64,7 @@ fun DefaultPreview() {
 
 // Página Inicial
 @Composable
-fun HangmanApp() {
+fun HangmanApp(navController: NavHostController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -53,13 +73,19 @@ fun HangmanApp() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "Hangman Game",
+            text = stringResource(R.string.hangman_game),
             fontSize = 30.sp,
             textAlign = TextAlign.Center,
             modifier = Modifier.padding(bottom = 16.dp)
         )
-
-        GameScreen()
+        Button(
+            onClick = {
+                navController.navigate("gameScreen")
+            },
+            modifier = Modifier.padding(bottom = 16.dp)
+        ) {
+            Text (stringResource(R.string.start_game))
+        }
     }
 }
 
