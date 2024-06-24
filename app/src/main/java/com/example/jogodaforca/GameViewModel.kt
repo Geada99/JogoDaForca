@@ -18,9 +18,16 @@ class GameViewModel : ViewModel() {
     private val _hiddenWord = MutableStateFlow("")
     val hiddenWord: StateFlow<String> get() = _hiddenWord
 
-    private val _currentImageIndex = MutableStateFlow(0)
+    private val _currentHint = MutableStateFlow("")
+    val currentHint: StateFlow<String> get() = _currentHint
 
-    private val _errors = MutableStateFlow(0)
+    val errors = MutableStateFlow(0)
+    private val _currentImageIndex = MutableStateFlow(0)
+    private val _correctGuesses = MutableStateFlow(0)
+    val correctGuesses: StateFlow<Int> get() = _correctGuesses
+
+    private val _statusText = MutableStateFlow(R.string.clue)
+    val statusText: StateFlow<Int> get() = _statusText
 
     private val _hangmanDrawing = listOf(
         R.drawable.hangman_picture_1,
@@ -122,20 +129,22 @@ class GameViewModel : ViewModel() {
     private fun resetGame() {
         _usedWords.clear()
         _hiddenWord.value = pickRandomWordAndHide()
-        _errors.value = 0
+        errors.value = 0
+        _correctGuesses.value = 0
         _currentImageIndex.value = 0
         resetKeyboard()
     }
 
     fun newWord() {
         _hiddenWord.value = pickRandomWordAndHide()
-        _errors.value = 0
+        errors.value = 0
+        _correctGuesses.value = 0
         _currentImageIndex.value = 0
         resetKeyboard()
     }
 
     private fun incrementErrors() {
-        _errors.value++
+        errors.value++
         swapImage()
     }
 
@@ -144,25 +153,27 @@ class GameViewModel : ViewModel() {
     }
 
     private fun swapImage() {
-        _currentImageIndex.value = _errors.value.coerceAtMost(_hangmanDrawing.size - 1)
+        _currentImageIndex.value = errors.value.coerceAtMost(_hangmanDrawing.size - 1)
     }
 
-    // "this." diferencia variáveis de instância de locais ou parâmetros dentro de métodos
     private fun pickRandomWordAndHide(): String {
         do {
-            this._currentWord = allWords.random()
-        } while (_usedWords.contains(this._currentWord))
+            _currentWord = allWords.random()
+        } while (_usedWords.contains(_currentWord))
 
         _usedWords.add(_currentWord)
-        return hideCurrentWord(this._currentWord)
+        _currentHint.value = wordHints[allWords.indexOf(_currentWord)]
+
+        return hideCurrentWord(_currentWord)
     }
 
     private fun hideCurrentWord(word: String): String {
+        _correctGuesses.value = 0
         return "_ ".repeat(word.length).trim()
     }
 
     fun checkLetter(letter: String, onLetterClick: (Color) -> Unit) {
-        val hiddenWordValue = this._currentWord
+        val hiddenWordValue = _currentWord
         val hiddenWordBuilder = StringBuilder(_hiddenWord.value)
         var found = false
 
@@ -170,6 +181,7 @@ class GameViewModel : ViewModel() {
             if (char.equals(letter[0], ignoreCase = true)) {
                 hiddenWordBuilder.setCharAt(2 * index, char) // Para compensar o espaço entre as letras
                 found = true
+                _correctGuesses.value++
             }
         }
 
@@ -181,6 +193,20 @@ class GameViewModel : ViewModel() {
             incrementErrors()
             onLetterClick(Color.Red)
         }
+    }
+
+    fun revealWord() {
+        val hiddenWordBuilder = StringBuilder()
+
+        _currentWord.forEachIndexed { index, char ->
+            if (char == ' ') {
+                hiddenWordBuilder.append("  ") // Adiciona dois espaços para manter a formatação original
+            } else {
+                hiddenWordBuilder.append(char).append(" ")
+            }
+        }
+
+        _hiddenWord.value = hiddenWordBuilder.toString().trim()
     }
 
     private fun resetKeyboard() {
@@ -265,6 +291,40 @@ class GameViewModel : ViewModel() {
 
             boxMClicked = false
             boxMBackgroundColor = Color.Gray
+        }
+    }
+
+    fun blockKeyboard() {
+        viewModelScope.launch {
+            boxQClicked = false
+            boxQBackgroundColor = Color.Gray
+
+            boxWClicked = true
+            boxEClicked = true
+            boxRClicked = true
+            boxTClicked = true
+            boxYClicked = true
+            boxUClicked = true
+            boxIClicked = true
+            boxOClicked = true
+            boxPClicked = true
+            boxAClicked = true
+            boxSClicked = true
+            boxDClicked = true
+            boxFClicked = true
+            boxGClicked = true
+            boxHClicked = true
+            boxJClicked = true
+            boxKClicked = true
+            boxLClicked = true
+            boxCedilhaClicked = true
+            boxZClicked = true
+            boxXClicked = true
+            boxCClicked = true
+            boxVClicked = true
+            boxBClicked = true
+            boxNClicked = true
+            boxMClicked = true
         }
     }
 }
