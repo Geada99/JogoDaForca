@@ -184,7 +184,7 @@ val allWords =
     )
 
 val wordHints = listOf(
-    "Living creature",        // animal
+    "Creature",        // animal
     "Object",        // auto
     "Event",         // anecdote
     "Concept",       // alphabet
