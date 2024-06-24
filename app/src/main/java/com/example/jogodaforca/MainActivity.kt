@@ -256,8 +256,7 @@ fun GameScreen() {
             }
 
             Box(
-                modifier = Modifier
-                    .size(33.dp)
+                modifier = Modifier.size(33.dp)
                     .padding(3.dp)
                     .clip(shape = RectangleShape)
                     .clickable {

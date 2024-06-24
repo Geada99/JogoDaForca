@@ -26,9 +26,6 @@ class GameViewModel : ViewModel() {
     private val _correctGuesses = MutableStateFlow(0)
     val correctGuesses: StateFlow<Int> get() = _correctGuesses
 
-    private val _statusText = MutableStateFlow(R.string.clue)
-    val statusText: StateFlow<Int> get() = _statusText
-
     private val _hangmanDrawing = listOf(
         R.drawable.hangman_picture_1,
         R.drawable.hangman_picture_2,
@@ -198,7 +195,7 @@ class GameViewModel : ViewModel() {
     fun revealWord() {
         val hiddenWordBuilder = StringBuilder()
 
-        _currentWord.forEachIndexed { index, char ->
+        _currentWord.forEachIndexed { _, char ->
             if (char == ' ') {
                 hiddenWordBuilder.append("  ") // Adiciona dois espaços para manter a formatação original
             } else {
