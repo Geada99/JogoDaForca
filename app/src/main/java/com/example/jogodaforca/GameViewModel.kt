@@ -176,7 +176,10 @@ class GameViewModel : ViewModel() {
 
         hiddenWordValue.forEachIndexed { index, char ->
             if (char.equals(letter[0], ignoreCase = true)) {
-                hiddenWordBuilder.setCharAt(2 * index, char) // Para compensar o espaço entre as letras
+                hiddenWordBuilder.setCharAt(
+                    2 * index,
+                    char
+                ) // Para compensar o espaço entre as letras
                 found = true
                 _correctGuesses.value++
             }
@@ -205,6 +208,7 @@ class GameViewModel : ViewModel() {
 
         _hiddenWord.value = hiddenWordBuilder.toString().trim()
     }
+
 
     private fun resetKeyboard() {
         viewModelScope.launch {

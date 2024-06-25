@@ -95,7 +95,7 @@ fun HangmanApp(navController: NavHostController) {
                 .size(400.dp)
                 .padding(20.dp)
                 .fillMaxWidth(),
-              //  .wrapContentHeight(),
+            //  .wrapContentHeight(),
             painter = painterResource(id = R.drawable.home_screen),
             contentDescription = "Home Image"
         )
@@ -107,7 +107,7 @@ fun HangmanApp(navController: NavHostController) {
             modifier = Modifier.padding(bottom = 16.dp),
             colors = ButtonDefaults.buttonColors(Color.Black)
         ) {
-            Text (stringResource(R.string.start_game))
+            Text(stringResource(R.string.start_game))
         }
     }
 }
@@ -135,10 +135,12 @@ fun GameScreen() {
             gameViewModel.revealWord()
             stringResource(R.string.lost)
         }
+
         correctGuesses == (hiddenWord.length / 2) + 1 -> {
             gameViewModel.blockKeyboard()
             stringResource(R.string.won)
         }
+
         else -> stringResource(R.string.hangman)
     }
 
@@ -185,10 +187,11 @@ fun GameScreen() {
             }) {
             Text(text = stringResource(R.string.new_word))
         }
+
         Spacer(modifier = Modifier.size(60.dp))
+
         // Teclado
         Column(
-
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
                 .fillMaxSize()
@@ -1067,7 +1070,7 @@ fun GameScreen() {
                         )
                     )
                 }
-        }
+            }
         }
     }
 }
