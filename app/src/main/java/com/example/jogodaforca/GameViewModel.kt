@@ -165,7 +165,6 @@ class GameViewModel : ViewModel() {
     }
 
     private fun hideCurrentWord(word: String): String {
-        _correctGuesses.value = 0
         return "_ ".repeat(word.length).trim()
     }
 
@@ -176,10 +175,7 @@ class GameViewModel : ViewModel() {
 
         hiddenWordValue.forEachIndexed { index, char ->
             if (char.equals(letter[0], ignoreCase = true)) {
-                hiddenWordBuilder.setCharAt(
-                    2 * index,
-                    char
-                ) // Para compensar o espaço entre as letras
+                hiddenWordBuilder.setCharAt(2 * index, char) // Para compensar o espaço entre as letras
                 found = true
                 _correctGuesses.value++
             }

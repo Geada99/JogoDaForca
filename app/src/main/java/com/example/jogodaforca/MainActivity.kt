@@ -15,9 +15,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
@@ -205,14 +203,12 @@ fun GameScreen() {
                         .size(buttonSize)
                         .padding(buttonPaddding)
                         .border(1.dp, Color.Black)
-                        .clip(shape = RectangleShape)
                         .clickable {
                             if (!gameViewModel.boxQClicked) {
                                 gameViewModel.checkLetter("Q") { newColor ->
                                     gameViewModel.boxQBackgroundColor = newColor
                                     gameViewModel.boxQClicked = true
-                                    imagemForca =
-                                        gameViewModel.getCurrentImageResource() // Atualizando a imagem da forca
+                                    imagemForca = gameViewModel.getCurrentImageResource() // Atualiza a imagem da forca
                                 }
                             }
                         }
@@ -238,7 +234,6 @@ fun GameScreen() {
                         .size(buttonSize)
                         .padding(buttonPaddding)
                         .border(1.dp, Color.Black)
-                        .clip(shape = RectangleShape)
                         .clickable {
                             if (!gameViewModel.boxWClicked) {
                                 gameViewModel.checkLetter("W") { newColor ->
@@ -270,7 +265,6 @@ fun GameScreen() {
                         .size(buttonSize)
                         .padding(buttonPaddding)
                         .border(1.dp, Color.Black)
-                        .clip(shape = RectangleShape)
                         .clickable {
                             if (!gameViewModel.boxEClicked) {
                                 gameViewModel.checkLetter("E") { newColor ->
@@ -302,7 +296,6 @@ fun GameScreen() {
                         .size(buttonSize)
                         .padding(buttonPaddding)
                         .border(1.dp, Color.Black)
-                        .clip(shape = RectangleShape)
                         .clickable {
                             if (!gameViewModel.boxRClicked) {
                                 gameViewModel.checkLetter("R") { newColor ->
@@ -334,7 +327,6 @@ fun GameScreen() {
                         .size(buttonSize)
                         .padding(buttonPaddding)
                         .border(1.dp, Color.Black)
-                        .clip(shape = RectangleShape)
                         .clickable {
                             if (!gameViewModel.boxTClicked) {
                                 gameViewModel.checkLetter("T") { newColor ->
@@ -366,7 +358,6 @@ fun GameScreen() {
                         .size(buttonSize)
                         .padding(buttonPaddding)
                         .border(1.dp, Color.Black)
-                        .clip(shape = RectangleShape)
                         .clickable {
                             if (!gameViewModel.boxYClicked) {
                                 gameViewModel.checkLetter("Y") { newColor ->
@@ -398,7 +389,6 @@ fun GameScreen() {
                         .size(buttonSize)
                         .padding(buttonPaddding)
                         .border(1.dp, Color.Black)
-                        .clip(shape = RectangleShape)
                         .clickable {
                             if (!gameViewModel.boxUClicked) {
                                 gameViewModel.checkLetter("U") { newColor ->
@@ -430,7 +420,6 @@ fun GameScreen() {
                         .size(buttonSize)
                         .padding(buttonPaddding)
                         .border(1.dp, Color.Black)
-                        .clip(shape = RectangleShape)
                         .clickable {
                             if (!gameViewModel.boxIClicked) {
                                 gameViewModel.checkLetter("I") { newColor ->
@@ -462,7 +451,6 @@ fun GameScreen() {
                         .size(buttonSize)
                         .padding(buttonPaddding)
                         .border(1.dp, Color.Black)
-                        .clip(shape = RectangleShape)
                         .clickable {
                             if (!gameViewModel.boxOClicked) {
                                 gameViewModel.checkLetter("O") { newColor ->
@@ -494,7 +482,6 @@ fun GameScreen() {
                         .size(buttonSize)
                         .padding(buttonPaddding)
                         .border(1.dp, Color.Black)
-                        .clip(shape = RectangleShape)
                         .clickable {
                             if (!gameViewModel.boxPClicked) {
                                 gameViewModel.checkLetter("P") { newColor ->
@@ -529,7 +516,6 @@ fun GameScreen() {
                         .size(buttonSize)
                         .padding(buttonPaddding)
                         .border(1.dp, Color.Black)
-                        .clip(shape = RectangleShape)
                         .clickable {
                             if (!gameViewModel.boxAClicked) {
                                 gameViewModel.checkLetter("A") { newColor ->
@@ -561,7 +547,6 @@ fun GameScreen() {
                         .size(buttonSize)
                         .padding(buttonPaddding)
                         .border(1.dp, Color.Black)
-                        .clip(shape = RectangleShape)
                         .clickable {
                             if (!gameViewModel.boxSClicked) {
                                 gameViewModel.checkLetter("S") { newColor ->
@@ -593,7 +578,6 @@ fun GameScreen() {
                         .size(buttonSize)
                         .padding(buttonPaddding)
                         .border(1.dp, Color.Black)
-                        .clip(shape = RectangleShape)
                         .clickable {
                             if (!gameViewModel.boxDClicked) {
                                 gameViewModel.checkLetter("D") { newColor ->
@@ -625,7 +609,6 @@ fun GameScreen() {
                         .size(buttonSize)
                         .padding(buttonPaddding)
                         .border(1.dp, Color.Black)
-                        .clip(shape = RectangleShape)
                         .clickable {
                             if (!gameViewModel.boxFClicked) {
                                 gameViewModel.checkLetter("F") { newColor ->
@@ -657,7 +640,6 @@ fun GameScreen() {
                         .size(buttonSize)
                         .padding(buttonPaddding)
                         .border(1.dp, Color.Black)
-                        .clip(shape = RectangleShape)
                         .clickable {
                             if (!gameViewModel.boxGClicked) {
                                 gameViewModel.checkLetter("G") { newColor ->
@@ -689,7 +671,6 @@ fun GameScreen() {
                         .size(buttonSize)
                         .padding(buttonPaddding)
                         .border(1.dp, Color.Black)
-                        .clip(shape = RectangleShape)
                         .clickable {
                             if (!gameViewModel.boxHClicked) {
                                 gameViewModel.checkLetter("H") { newColor ->
@@ -721,7 +702,6 @@ fun GameScreen() {
                         .size(buttonSize)
                         .padding(buttonPaddding)
                         .border(1.dp, Color.Black)
-                        .clip(shape = RectangleShape)
                         .clickable {
                             if (!gameViewModel.boxJClicked) {
                                 gameViewModel.checkLetter("J") { newColor ->
@@ -753,7 +733,6 @@ fun GameScreen() {
                         .size(buttonSize)
                         .padding(buttonPaddding)
                         .border(1.dp, Color.Black)
-                        .clip(shape = RectangleShape)
                         .clickable {
                             if (!gameViewModel.boxKClicked) {
                                 gameViewModel.checkLetter("K") { newColor ->
@@ -785,7 +764,6 @@ fun GameScreen() {
                         .size(buttonSize)
                         .padding(buttonPaddding)
                         .border(1.dp, Color.Black)
-                        .clip(shape = RectangleShape)
                         .clickable {
                             if (!gameViewModel.boxLClicked) {
                                 gameViewModel.checkLetter("L") { newColor ->
@@ -817,7 +795,6 @@ fun GameScreen() {
                         .size(buttonSize)
                         .padding(buttonPaddding)
                         .border(1.dp, Color.Black)
-                        .clip(shape = RectangleShape)
                         .clickable {
                             if (!gameViewModel.boxCedilhaClicked) {
                                 gameViewModel.checkLetter("Ç") { newColor ->
@@ -852,7 +829,6 @@ fun GameScreen() {
                         .size(buttonSize)
                         .padding(buttonPaddding)
                         .border(1.dp, Color.Black)
-                        .clip(shape = RectangleShape)
                         .clickable {
                             if (!gameViewModel.boxZClicked) {
                                 gameViewModel.checkLetter("Z") { newColor ->
@@ -884,7 +860,6 @@ fun GameScreen() {
                         .size(buttonSize)
                         .padding(buttonPaddding)
                         .border(1.dp, Color.Black)
-                        .clip(shape = RectangleShape)
                         .clickable {
                             if (!gameViewModel.boxXClicked) {
                                 gameViewModel.checkLetter("X") { newColor ->
@@ -916,7 +891,6 @@ fun GameScreen() {
                         .size(buttonSize)
                         .padding(buttonPaddding)
                         .border(1.dp, Color.Black)
-                        .clip(shape = RectangleShape)
                         .clickable {
                             if (!gameViewModel.boxCClicked) {
                                 gameViewModel.checkLetter("C") { newColor ->
@@ -948,7 +922,6 @@ fun GameScreen() {
                         .size(buttonSize)
                         .padding(buttonPaddding)
                         .border(1.dp, Color.Black)
-                        .clip(shape = RectangleShape)
                         .clickable {
                             if (!gameViewModel.boxVClicked) {
                                 gameViewModel.checkLetter("V") { newColor ->
@@ -980,7 +953,6 @@ fun GameScreen() {
                         .size(buttonSize)
                         .padding(buttonPaddding)
                         .border(1.dp, Color.Black)
-                        .clip(shape = RectangleShape)
                         .clickable {
                             if (!gameViewModel.boxBClicked) {
                                 gameViewModel.checkLetter("B") { newColor ->
@@ -1012,7 +984,6 @@ fun GameScreen() {
                         .size(buttonSize)
                         .padding(buttonPaddding)
                         .border(1.dp, Color.Black)
-                        .clip(shape = RectangleShape)
                         .clickable {
                             if (!gameViewModel.boxNClicked) {
                                 gameViewModel.checkLetter("N") { newColor ->
@@ -1044,7 +1015,6 @@ fun GameScreen() {
                         .size(buttonSize)
                         .padding(buttonPaddding)
                         .border(1.dp, Color.Black)
-                        .clip(shape = RectangleShape)
                         .clickable {
                             if (!gameViewModel.boxMClicked) {
                                 gameViewModel.checkLetter("M") { newColor ->
