@@ -185,10 +185,10 @@ class GameViewModel : ViewModel() {
         _hiddenWord.value = hiddenWordBuilder.toString()
 
         if (found) {
-            onLetterClick(Color.Green)
+            onLetterClick(Color(0xFF369941))
         } else {
             incrementErrors()
-            onLetterClick(Color.Red)
+            onLetterClick(Color(0xFF962121))
         }
     }
 
@@ -208,94 +208,94 @@ class GameViewModel : ViewModel() {
 
     private fun resetKeyboard() {
         viewModelScope.launch {
+            val keyboardColor = Color(0xFF546A6D)
+
             boxQClicked = false
-            boxQBackgroundColor = Color.Gray
+            boxQBackgroundColor = keyboardColor
 
             boxWClicked = false
-            boxWBackgroundColor = Color.Gray
+            boxWBackgroundColor = keyboardColor
 
             boxEClicked = false
-            boxEBackgroundColor = Color.Gray
+            boxEBackgroundColor = keyboardColor
 
             boxRClicked = false
-            boxRBackgroundColor = Color.Gray
+            boxRBackgroundColor = keyboardColor
 
             boxTClicked = false
-            boxTBackgroundColor = Color.Gray
+            boxTBackgroundColor = keyboardColor
 
             boxYClicked = false
-            boxYBackgroundColor = Color.Gray
+            boxYBackgroundColor = keyboardColor
 
             boxUClicked = false
-            boxUBackgroundColor = Color.Gray
+            boxUBackgroundColor = keyboardColor
 
             boxIClicked = false
-            boxIBackgroundColor = Color.Gray
+            boxIBackgroundColor = keyboardColor
 
             boxOClicked = false
-            boxOBackgroundColor = Color.Gray
+            boxOBackgroundColor = keyboardColor
 
             boxPClicked = false
-            boxPBackgroundColor = Color.Gray
+            boxPBackgroundColor = keyboardColor
 
             boxAClicked = false
-            boxABackgroundColor = Color.Gray
+            boxABackgroundColor = keyboardColor
 
             boxSClicked = false
-            boxSBackgroundColor = Color.Gray
+            boxSBackgroundColor = keyboardColor
 
             boxDClicked = false
-            boxDBackgroundColor = Color.Gray
+            boxDBackgroundColor = keyboardColor
 
             boxFClicked = false
-            boxFBackgroundColor = Color.Gray
+            boxFBackgroundColor = keyboardColor
 
             boxGClicked = false
-            boxGBackgroundColor = Color.Gray
+            boxGBackgroundColor = keyboardColor
 
             boxHClicked = false
-            boxHBackgroundColor = Color.Gray
+            boxHBackgroundColor = keyboardColor
 
             boxJClicked = false
-            boxJBackgroundColor = Color.Gray
+            boxJBackgroundColor = keyboardColor
 
             boxKClicked = false
-            boxKBackgroundColor = Color.Gray
+            boxKBackgroundColor = keyboardColor
 
             boxLClicked = false
-            boxLBackgroundColor = Color.Gray
+            boxLBackgroundColor = keyboardColor
 
             boxCedilhaClicked = false
-            boxCedilhaBackgroundColor = Color.Gray
+            boxCedilhaBackgroundColor = keyboardColor
 
             boxZClicked = false
-            boxZBackgroundColor = Color.Gray
+            boxZBackgroundColor = keyboardColor
 
             boxXClicked = false
-            boxXBackgroundColor = Color.Gray
+            boxXBackgroundColor = keyboardColor
 
             boxCClicked = false
-            boxCBackgroundColor = Color.Gray
+            boxCBackgroundColor = keyboardColor
 
             boxVClicked = false
-            boxVBackgroundColor = Color.Gray
+            boxVBackgroundColor = keyboardColor
 
             boxBClicked = false
-            boxBBackgroundColor = Color.Gray
+            boxBBackgroundColor = keyboardColor
 
             boxNClicked = false
-            boxNBackgroundColor = Color.Gray
+            boxNBackgroundColor = keyboardColor
 
             boxMClicked = false
-            boxMBackgroundColor = Color.Gray
+            boxMBackgroundColor = keyboardColor
         }
     }
 
     fun blockKeyboard() {
         viewModelScope.launch {
-            boxQClicked = false
-            boxQBackgroundColor = Color.Gray
-
+            boxQClicked = true
             boxWClicked = true
             boxEClicked = true
             boxRClicked = true
