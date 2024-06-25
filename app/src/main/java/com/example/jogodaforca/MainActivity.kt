@@ -1,6 +1,5 @@
 package com.example.jogodaforca
 
-import android.graphics.ColorSpace.Rgb
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
