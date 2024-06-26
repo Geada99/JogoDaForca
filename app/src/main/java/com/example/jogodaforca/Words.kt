@@ -184,7 +184,7 @@ val allWords =
     )
 
 val wordHints = listOf(
-    "Creature",        // animal
+    "Creature",      // animal
     "Object",        // auto
     "Event",         // anecdote
     "Concept",       // alphabet
@@ -239,7 +239,7 @@ val wordHints = listOf(
     "Object",        // glass
     "Adjective",     // great
     "Action",        // giggle
-    "Instrument",    // haircut
+    "Beauty",        // haircut
     "Quantity",      // half
     "Adjective",     // homemade
     "Action",        // happen
@@ -247,7 +247,7 @@ val wordHints = listOf(
     "Action",        // hurry
     "Number",        // hundred
     "State",         // ice
-    "Object",        // igloo
+    "Home",          // igloo
     "Action",        // invest
     "Action",        // invite
     "Object",        // icon
@@ -269,17 +269,17 @@ val wordHints = listOf(
     "Action",        // learning
     "Fruit",         // lemon
     "Object",        // letter
-    "Object",        // lily
+    "Flower",        // lily
     "Object",        // magazine
     "Adjective",     // marine
     "Food",          // marshmallow
     "Object",        // maze
     "Action",        // meditate
-    "Object",        // melody
+    "Music",         // melody
     "Time",          // minute
     "Object",        // monument
-    "Object",        // moon
-    "Object",        // motorcycle
+    "Space",         // moon
+    "Vehicle",       // motorcycle
     "Place",         // mountain
     "Art",           // music
     "Direction",     // north
@@ -341,7 +341,7 @@ val wordHints = listOf(
     "Object",        // vase
     "Instrument",    // violin
     "Person",        // visitor
-    "Vision",        // vision
+    "Sense",         // vision
     "Measurement",   // volume
     "Sight",         // view
     "Animal",        // walrus
